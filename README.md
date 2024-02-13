@@ -9,7 +9,7 @@ Vending Machine API contains a RESTful API designed to simulate the backend func
   6-Error handling and validation using custom middleware
   7-Secure password storage using bcrypt hashing
   8-Rate limiting, data sanitization, and protection against common security vulnerabilities (XSS, CSRF)
-#Usage  
+# Usage  
   1-Clone the repository to your local machine.
   2-Install dependencies using npm install.
   3-Set up environment variables by creating a .env file and adding necessary configurations.
