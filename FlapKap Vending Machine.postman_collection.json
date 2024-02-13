@@ -1,0 +1,507 @@
+{
+	"info": {
+		"_postman_id": "057e72ee-b02f-49cb-a984-f1e5b606815d",
+		"name": "FlapKap Vending Machine",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21266696"
+	},
+	"item": [
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "Get all products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}vending-machine/api/version1/products/",
+							"host": [
+								"{{URL}}vending-machine"
+							],
+							"path": [
+								"api",
+								"version1",
+								"products",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"productName\":\"Coke\",\r\n    \"cost\":42,\r\n    \"amountAvailable\":1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}vending-machine/api/version1/products/create-product",
+							"host": [
+								"{{URL}}vending-machine"
+							],
+							"path": [
+								"api",
+								"version1",
+								"products",
+								"create-product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}vending-machine/api/version1/products/65ca7964e974bb4b0b1ecc48",
+							"host": [
+								"{{URL}}vending-machine"
+							],
+							"path": [
+								"api",
+								"version1",
+								"products",
+								"65ca7964e974bb4b0b1ecc48"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cost\":4,\r\n    \"productName\":\"coka\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}vending-machine/api/version1/products/65cacf557ad03cf7929cc9af",
+							"host": [
+								"{{URL}}vending-machine"
+							],
+							"path": [
+								"api",
+								"version1",
+								"products",
+								"65cacf557ad03cf7929cc9af"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Get my info",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}vending-machine/api/version1/users/me",
+							"host": [
+								"{{URL}}vending-machine"
+							],
+							"path": [
+								"api",
+								"version1",
+								"users",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}vending-machine/api/version1/users",
+							"host": [
+								"{{URL}}vending-machine"
+							],
+							"path": [
+								"api",
+								"version1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Signup",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"jwt\", pm.response.json().token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"seller\",\r\n    \"password\":\"test123\",\r\n    \"role\":\"seller\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}vending-machine/api/version1/users/signup",
+							"host": [
+								"{{URL}}vending-machine"
+							],
+							"path": [
+								"api",
+								"version1",
+								"users",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"jwt\", pm.response.json().token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"buyer\",\r\n    \"password\":\"test123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}vending-machine/api/version1/users/login",
+							"host": [
+								"{{URL}}vending-machine"
+							],
+							"path": [
+								"api",
+								"version1",
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete me",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}vending-machine/api/version1/users/delete-me",
+							"host": [
+								"{{URL}}vending-machine"
+							],
+							"path": [
+								"api",
+								"version1",
+								"users",
+								"delete-me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateMyPassword",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"passwordCurrent\":\"test123\",\r\n    \"password\":\"test1235\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}vending-machine/api/version1/users/update-my-password",
+							"host": [
+								"{{URL}}vending-machine"
+							],
+							"path": [
+								"api",
+								"version1",
+								"users",
+								"update-my-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"sellerrc\"\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}vending-machine/api/version1/users/update-me",
+							"host": [
+								"{{URL}}vending-machine"
+							],
+							"path": [
+								"api",
+								"version1",
+								"users",
+								"update-me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User deposit",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"deposit\":150\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}vending-machine/api/version1/users/deposit",
+							"host": [
+								"{{URL}}vending-machine"
+							],
+							"path": [
+								"api",
+								"version1",
+								"users",
+								"deposit"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buy",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"productId\":\"65cacf557ad03cf7929cc9af\",\r\n    \"amount\":1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}vending-machine/api/version1/users/buy",
+							"host": [
+								"{{URL}}vending-machine"
+							],
+							"path": [
+								"api",
+								"version1",
+								"users",
+								"buy"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reset deposit",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}vending-machine/api/version1/users/reset",
+							"host": [
+								"{{URL}}vending-machine"
+							],
+							"path": [
+								"api",
+								"version1",
+								"users",
+								"reset"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
