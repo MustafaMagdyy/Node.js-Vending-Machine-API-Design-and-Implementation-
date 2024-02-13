@@ -16,3 +16,13 @@ Vending Machine API contains a RESTful API designed to simulate the backend func
   3-Set up environment variables by creating a .env file and adding necessary configurations.
   4-Start the server using npm start or npm run start:dev for development mode.
   5-Access the API endpoints using your preferred HTTP client (e.g., Postman).
+
+## Installation
+***
+A little intro about the installation. 
+```
+$ git clone https://example.com
+$ cd ../path/to/the/file
+$ npm install
+$ npm start
+```
