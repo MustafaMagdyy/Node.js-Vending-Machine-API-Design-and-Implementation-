@@ -51,6 +51,21 @@ exports.getMe = (req, res, next) => {
 exports.deposit = catchAsync(async (req, res, next) => {
   // Find the buyer user
   const buyer = await User.findById(req.user.id);
+  // Check the deposited amount value
+  if (
+    req.body.deposit !== 5 &&
+    req.body.deposit !== 10 &&
+    req.body.deposit !== 20 &&
+    req.body.deposit !== 50 &&
+    req.body.deposit !== 100
+  ) {
+    return next(
+      new AppError(
+        "Deposited amount must be either 5,10,20,50 or 100 coin cent!",
+        400
+      )
+    );
+  }
   // Add deposited amount to user's balance
   buyer.deposit = buyer.deposit + req.body.deposit;
   // Save updated user document
